@@ -204,7 +204,7 @@ func (t *TaskController) GetTask(c *gin.Context) {
 	task := model.Task{}
 	id := c.Param("id")
 
-	if err := t.DB.Preload("User").First(&model.Task{}, id).Error; err != nil {
+	if err := t.DB.Preload("User").First(&task, id).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": err.Error(),
 		})
