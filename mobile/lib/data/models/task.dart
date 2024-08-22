@@ -35,7 +35,7 @@ class Task {
         this.user,
     });
 
-    factory Task.fromJson(Map<String, dynamic> json) => Task(
+    factory Task.formJson(Map<String, dynamic> json) => Task(
         id: json["id"],
         userId: json["userId"],
         title: json["title"],

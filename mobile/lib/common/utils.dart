@@ -24,14 +24,14 @@ String dateByStatus(Task task){
 String iconByStatus(Task task) {
   switch (task.status) {
     case 'queue':
-      return 'assets/queue.png';
+      return 'assets/queue_icon.png';
     case 'review':
-      return 'assets/review.png';
+      return 'assets/review_icon.png';
     case 'approved':
-      return 'assets/approved.png';
+      return 'assets/approved_icon.png';
     case 'rejected':
-      return 'assets/rejected.png';
+      return 'assets/rejected_icon.png';
     default:
-      return 'assets/queue.png';
+      return 'assets/queue_icon.png';
   }
 }
