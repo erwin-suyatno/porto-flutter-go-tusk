@@ -217,7 +217,9 @@ func (t *TaskController) GetTask(c *gin.Context) {
 func (t *TaskController) NeedToBeReviewed(c *gin.Context) {
 	tasks := []model.Task{}
 
-	if err := t.DB.Preload("User").Where("status = ?", "Review").Order("submit_date ASC").Find(tasks).Error; err != nil {
+	err := t.DB.Preload("User").Where("status=?", "Review").Order("submit_date ASC").Limit(2).Find(&tasks).Error
+
+	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": err.Error(),
 		})

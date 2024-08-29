@@ -30,7 +30,7 @@ class UserSource {
     }
   }
 
-  static Future<bool> addEmployee(String name, String email) async {
+  static Future<(bool, String)> addEmployee(String name, String email) async {
     try {
       final response = await http.post(
         Uri.parse(_baseURL),
@@ -41,10 +41,17 @@ class UserSource {
       );
       DMethod.logResponse(response);
 
-      return response.statusCode == 201;
+      if(response.statusCode == 201) {
+        return (true, "Success add new employee");
+      }
+      if (response.statusCode == 400) {
+        return (false, "Email already exists");
+      }
+
+      return (false, "Failed add new employee");
     } catch (e) {
       DMethod.log(e.toString(),colorCode: 1);
-      return false;
+      return (false, "Something went wrong");
     }
   }
 
@@ -62,7 +69,7 @@ class UserSource {
     }
   }
 
-  static Future<List<User>?> getEmployee(String email, String password) async {
+  static Future<List<User>?> getEmployee() async {
     try {
       final response = await http.get(
         Uri.parse('$_baseURL/employee'),
