@@ -101,7 +101,7 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
 
 Widget buildEmployee() {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text('Need to be Reviewed',
+      Text('Employee',
           style: GoogleFonts.montserrat(
               fontWeight: FontWeight.bold, fontSize: 18)),
       BlocBuilder<EmployeeBloc, EmployeeState>(
