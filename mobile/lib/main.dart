@@ -6,11 +6,13 @@ import 'package:mobile/data/models/user.dart';
 import 'package:mobile/presentation/bloc/employee/employee_bloc.dart';
 import 'package:mobile/presentation/bloc/login/login_cubit.dart';
 import 'package:mobile/presentation/bloc/need_review/need_review_bloc.dart';
+import 'package:mobile/presentation/bloc/stat_employee/stat_employee_cubit.dart';
 import 'package:mobile/presentation/bloc/user/user_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/common/app_routing.dart';
 import 'package:d_session/d_session.dart';
 import 'package:mobile/presentation/page/add_employee_page.dart';
+import 'package:mobile/presentation/page/add_task_page.dart';
 import 'package:mobile/presentation/page/detail_task_page.dart';
 import 'package:mobile/presentation/page/home_admin_page.dart';
 import 'package:mobile/presentation/page/login_page.dart';
@@ -39,6 +41,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => LoginCubit(),),
         BlocProvider(create: (context) => NeedReviewBloc(),),
         BlocProvider(create: (context) => EmployeeBloc(),),
+        BlocProvider(create: (context) => StatEmployeeCubit(),),
       ], 
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -83,7 +86,10 @@ class MyApp extends StatelessWidget {
             );
           },
           AppRouting.addEmployee: (context) => const AddEmployeePage(), //add employee
-          AppRouting.addTask: (context) => const Scaffold(), //add task
+          AppRouting.addTask: (context) {
+            User employee = ModalRoute.of(context)!.settings.arguments as User;
+            return AddTaskPage(employee: employee);
+          }, //add task
           AppRouting.detailTask: (context) {
             int id = ModalRoute.of(context)!.settings.arguments as int;
             return DetailTaskPage(id: id);
