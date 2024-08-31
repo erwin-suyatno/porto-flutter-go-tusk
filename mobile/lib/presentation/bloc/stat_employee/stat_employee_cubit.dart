@@ -12,7 +12,7 @@ class StatEmployeeCubit extends Cubit<Map> {
 
   fetchStatistic(int userId) async{
     final result = await TaskSource.statisticTask(userId);
-    if(result != null) {
+    if(result == null) {
       emit(_init);
     }else {
       emit(result!);

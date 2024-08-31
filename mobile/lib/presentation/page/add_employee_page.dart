@@ -33,7 +33,7 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
-          title: Text("Add Employee"),
+          title: const Text("Add Employee"),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),

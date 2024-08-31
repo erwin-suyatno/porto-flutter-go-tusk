@@ -10,7 +10,7 @@ class TaskSource {
   static const _baseURL = '${URLs.host}/tasks';
   
 
-  static Future<bool> addTask(String title, String description, String dueDate, int userId) async {
+  static Future<(bool, String)> addTask(String title, String description, String dueDate, int userId) async {
     try {
       final response = await http.post(
         Uri.parse(_baseURL),
@@ -19,15 +19,22 @@ class TaskSource {
           "description": description,
           "status": "Queue",
           "dueDate": dueDate,
-          "userId":2
+          "userId": userId,
         })
       );
       DMethod.logResponse(response);
 
-      return response.statusCode == 201;
+      if(response.statusCode == 201) {
+        return (true, "Success add new task");
+      }
+      if (response.statusCode == 400) {
+        return (false, "Email already exists");
+      }
+
+      return (false, "Failed add new task");
     } catch (e) {
       DMethod.log(e.toString(),colorCode: 1);
-      return false;
+      return (false, "Something went wrong");
     }
   }
 

@@ -99,7 +99,7 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
     );
   }
 
-Widget buildEmployee() {
+  Widget buildEmployee() {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text('Employee',
           style: GoogleFonts.montserrat(
@@ -114,6 +114,7 @@ Widget buildEmployee() {
           if (state is EmployeeFailed) {
             return const FailedUi(
               margin: EdgeInsets.only(top: 20),
+              icon: Icons.error,
               message: 'Something went wrong',
             );
           }
@@ -237,6 +238,7 @@ Widget buildEmployee() {
           if (state.requestStatus == RequestStatus.failed) {
             return const FailedUi(
               margin: EdgeInsets.only(top: 20),
+              icon: Icons.error,
               message: 'Something went wrong',
             );
           }
@@ -368,7 +370,7 @@ Widget buildEmployee() {
             onTap: () {
               Navigator.pushNamed(context, AppRouting.profile).then(
                 (value) {
-                  // refresh data
+                  refresh();
                 },
               );
             },
@@ -381,7 +383,7 @@ Widget buildEmployee() {
               ),
             ),
           ),
-          Gap(10),
+          const Gap(10),
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,

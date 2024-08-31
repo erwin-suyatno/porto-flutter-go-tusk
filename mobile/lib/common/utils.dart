@@ -8,13 +8,13 @@ String _formatDate(DateTime date) {
 
 String dateByStatus(Task task){
   switch (task.status) {
-    case 'queue':
+    case 'Queue':
       return _formatDate(task.createdAt!);
-    case 'review':
+    case 'Review':
       return _formatDate(task.submitDate!);
-    case 'approved':
+    case 'Approved':
       return _formatDate(task.approvedDate!);
-    case 'rejected':
+    case 'Rejected':
       return _formatDate(task.rejectedDate!);
     default:
       return "-";
@@ -23,13 +23,13 @@ String dateByStatus(Task task){
 
 String iconByStatus(Task task) {
   switch (task.status) {
-    case 'queue':
+    case 'Queue':
       return 'assets/queue_icon.png';
-    case 'review':
+    case 'Review':
       return 'assets/review_icon.png';
-    case 'approved':
+    case 'Approved':
       return 'assets/approved_icon.png';
-    case 'rejected':
+    case 'Rejected':
       return 'assets/rejected_icon.png';
     default:
       return 'assets/queue_icon.png';

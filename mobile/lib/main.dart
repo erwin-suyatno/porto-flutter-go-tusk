@@ -6,6 +6,7 @@ import 'package:mobile/data/models/user.dart';
 import 'package:mobile/presentation/bloc/employee/employee_bloc.dart';
 import 'package:mobile/presentation/bloc/login/login_cubit.dart';
 import 'package:mobile/presentation/bloc/need_review/need_review_bloc.dart';
+import 'package:mobile/presentation/bloc/progress_task/progress_task_bloc.dart';
 import 'package:mobile/presentation/bloc/stat_employee/stat_employee_cubit.dart';
 import 'package:mobile/presentation/bloc/user/user_cubit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +16,7 @@ import 'package:mobile/presentation/page/add_employee_page.dart';
 import 'package:mobile/presentation/page/add_task_page.dart';
 import 'package:mobile/presentation/page/detail_task_page.dart';
 import 'package:mobile/presentation/page/home_admin_page.dart';
+import 'package:mobile/presentation/page/list_task_page.dart';
 import 'package:mobile/presentation/page/login_page.dart';
 import 'package:mobile/presentation/page/monitor_employee_page.dart';
 import 'package:mobile/presentation/page/profile_page.dart';
@@ -42,6 +44,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => NeedReviewBloc(),),
         BlocProvider(create: (context) => EmployeeBloc(),),
         BlocProvider(create: (context) => StatEmployeeCubit(),),
+        BlocProvider(create: (context) => ProgressTaskBloc(),),
       ], 
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -94,7 +97,10 @@ class MyApp extends StatelessWidget {
             int id = ModalRoute.of(context)!.settings.arguments as int;
             return DetailTaskPage(id: id);
           }, //detail task
-          AppRouting.listTask: (context) => const Scaffold(), //list task
+          AppRouting.listTask: (context) {
+            Map data = ModalRoute.of(context)!.settings.arguments as Map;
+            return ListTaskPage(status: data['status'], employee: data['employee']);
+          }, //list task
           AppRouting.login: (context) => const LoginPage(), //login Page
           AppRouting.monitorEmployee: (context) {
             User employee = ModalRoute.of(context)!.settings.arguments as User;
