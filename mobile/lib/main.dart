@@ -17,6 +17,7 @@ import 'package:mobile/presentation/page/add_employee_page.dart';
 import 'package:mobile/presentation/page/add_task_page.dart';
 import 'package:mobile/presentation/page/detail_task_page.dart';
 import 'package:mobile/presentation/page/home_admin_page.dart';
+import 'package:mobile/presentation/page/home_employee_page.dart';
 import 'package:mobile/presentation/page/list_task_page.dart';
 import 'package:mobile/presentation/page/login_page.dart';
 import 'package:mobile/presentation/page/monitor_employee_page.dart';
@@ -85,7 +86,7 @@ class MyApp extends StatelessWidget {
                User user = User.formJson(Map.from(snapshot.data!));
                context.read<UserCubit>().update(user);
                if (user.role == "Admin") return const HomeAdminPage(); //homeadmin
-               return const Scaffold(); //home employee
+               return const HomeEmployeePage(); //home employee
               }
             );
           },

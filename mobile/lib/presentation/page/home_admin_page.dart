@@ -361,7 +361,7 @@ class _HomeAdminPageState extends State<HomeAdminPage> {
       alignment: Alignment.topCenter,
       height: 150,
       color: AppColor.primary,
-      margin: EdgeInsets.only(bottom: 25),
+      margin: const EdgeInsets.only(bottom: 25),
       padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
