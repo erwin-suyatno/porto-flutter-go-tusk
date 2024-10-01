@@ -283,17 +283,17 @@ class _MonitorEmployeePageState extends State<MonitorEmployeePage> {
           context, 
           AppRouting.addTask, 
           arguments: widget.employee).then((value) => refresh());
-      }, 
-      child: Row(
+      },
+      mainColor: Colors.white,
+      radius: 12, 
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.add),
-          const Gap(4),
-          const Text('Add new task'),
+          Icon(Icons.add),
+          Gap(4),
+          Text('Add new task'),
         ],
       ),
-      mainColor: Colors.white,
-      radius: 12,
     );
   }
 
@@ -321,11 +321,11 @@ class _MonitorEmployeePageState extends State<MonitorEmployeePage> {
           ),
           const Spacer(),
           DButtonFlat(
-            onClick: () {}, 
-            child: const Text('Reset password'),
+            onClick: () {},
             height: 40,
             mainColor: Colors.white,
-            radius: 12,)
+            radius: 12, 
+            child: const Text('Reset password'),)
         ],),
     );
   }

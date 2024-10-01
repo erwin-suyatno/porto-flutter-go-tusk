@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:mobile/common/app_color.dart';
 import 'package:mobile/common/app_info.dart';
 import 'package:mobile/data/models/user.dart';
-import 'package:mobile/data/source/task_source%20.dart';
+import 'package:mobile/data/source/task_source.dart';
 import 'package:mobile/presentation/widgets/app_button.dart';
 
 class AddTaskPage extends StatefulWidget {

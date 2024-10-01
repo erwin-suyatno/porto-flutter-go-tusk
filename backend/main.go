@@ -43,5 +43,5 @@ func main() {
 	router.GET("/tasks/user/:userId/:status", taskController.FindByUserAndStatus)
 
 	router.Static("/assets", "./assets") //showing assets in backend
-	router.Run("172.21.112.1:8080")
+	router.Run("192.168.0.141:8080")     //sesuaikan dengan ip address atau server
 }

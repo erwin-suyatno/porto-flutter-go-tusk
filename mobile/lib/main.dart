@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/common/app_color.dart';
 import 'package:mobile/data/models/user.dart';
 import 'package:mobile/presentation/bloc/employee/employee_bloc.dart';
+import 'package:mobile/presentation/bloc/list_task/list_task_bloc.dart';
 import 'package:mobile/presentation/bloc/login/login_cubit.dart';
 import 'package:mobile/presentation/bloc/need_review/need_review_bloc.dart';
 import 'package:mobile/presentation/bloc/progress_task/progress_task_bloc.dart';
@@ -99,7 +100,9 @@ class MyApp extends StatelessWidget {
           }, //detail task
           AppRouting.listTask: (context) {
             Map data = ModalRoute.of(context)!.settings.arguments as Map;
-            return ListTaskPage(status: data['status'], employee: data['employee']);
+            return BlocProvider(
+              create: (context) => ListTaskBloc(),
+              child: ListTaskPage(status: data['status'], employee: data['employee']));
           }, //list task
           AppRouting.login: (context) => const LoginPage(), //login Page
           AppRouting.monitorEmployee: (context) {

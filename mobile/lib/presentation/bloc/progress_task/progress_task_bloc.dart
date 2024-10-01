@@ -2,7 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/data/models/task.dart';
-import 'package:mobile/data/source/task_source%20.dart';
+import 'package:mobile/data/source/task_source.dart';
 
 part 'progress_task_event.dart';
 part 'progress_task_state.dart';
