@@ -24,6 +24,9 @@ Aplikasi Porto Flutter Go Tusk adalah sebuah aplikasi manajemen tugas yang diban
 * Go: bahasa pemrograman yang digunakan untuk mengelola data dan melakukan operasi CRUD.
 * HTTP: protokol yang digunakan untuk mengirimkan data antara aplikasi dan server.
 
+## Pengembagan Selanjutnya
+* 
+
 ## Kontributor
 
 * Erwin Suyatno: pengembang aplikasi ini.
