@@ -30,6 +30,9 @@ class _AddTaskPageState extends State<AddTaskPage> {
       var (success, message) = value;
       if(success) {
         AppInfo.success(context, message);
+        dueDate.value = DateTime.now();
+        edtTitle.text = '';
+        edtDescription.text = '';
       } else {
         AppInfo.failed(context, message);
       }

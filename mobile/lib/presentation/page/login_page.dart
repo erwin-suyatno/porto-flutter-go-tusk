@@ -1,17 +1,26 @@
 import 'package:d_input/d_input.dart';
+import 'package:d_session/d_session.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:mobile/common/app_color.dart';
 import 'package:mobile/common/app_info.dart';
 import 'package:mobile/common/app_routing.dart';
-import 'package:mobile/common/enums.dart';
-import 'package:mobile/presentation/bloc/login/login_cubit.dart';
-import 'package:mobile/presentation/bloc/user/user_cubit.dart';
+import 'package:mobile/data/source/user_source.dart';
 import 'package:mobile/presentation/widgets/app_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
+
+  login(String email, String password, BuildContext context) {
+    UserSource.login(email, password).then((result) {
+      if (result == null) {
+        AppInfo.failed(context, 'Login Failed');
+      } else {
+        AppInfo.success(context, 'Login Success');
+        DSession.setUser(result.toJson());
+        Navigator.pushNamed(context, AppRouting.home);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,24 +51,29 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            BlocConsumer<LoginCubit, LoginState>(
-              listener: (context, state) {
-                if (state.requestStatus == RequestStatus.failed) {
-                  AppInfo.failed(context, 'Login Failed');
-                }
-                if (state.requestStatus == RequestStatus.success) {
-                  AppInfo.success(context, 'Login Success');
-                  Navigator.pushNamed(context, AppRouting.home);
-                }
-              },
-              builder: (context, state) {
-                if (state.requestStatus == RequestStatus.loading) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                return AppButton.primary('Sign In', () {
-                  context.read<LoginCubit>().clickLogin(edtEmail.text, edtPassword.text);
-                });
-              },
+            // BlocConsumer<LoginCubit, LoginState>(
+            //   listener: (context, state) {
+            //     // if (state.requestStatus == RequestStatus.failed) {
+            //     //   AppInfo.failed(context, 'Login Failed');
+            //     // }
+            //     // if (state.requestStatus == RequestStatus.success) {
+            //     //   AppInfo.success(context, 'Login Success');
+            //     //   Navigator.pushNamed(context, AppRouting.home);
+            //     // }
+            //   },
+            //   builder: (context, state) {
+            //     if (state.requestStatus == RequestStatus.loading) {
+            //       return const Center(child: CircularProgressIndicator());
+            //     }
+            //     return AppButton.primary('Sign In', () {
+            //       // context.read<LoginCubit>().clickLogin(edtEmail.text, edtPassword.text);
+            //       login(edtEmail.text, edtPassword.text, context);
+            //     });
+            //   },
+            // ),
+            AppButton.primary('Sign In', () {
+              login(edtEmail.text, edtPassword.text, context);
+              }
             ),
           ]),
         )

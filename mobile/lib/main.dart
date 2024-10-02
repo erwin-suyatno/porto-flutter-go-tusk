@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/common/app_color.dart';
 import 'package:mobile/data/models/user.dart';
+import 'package:mobile/presentation/bloc/detail_task/detail_task_cubit.dart';
 import 'package:mobile/presentation/bloc/employee/employee_bloc.dart';
 import 'package:mobile/presentation/bloc/list_task/list_task_bloc.dart';
 import 'package:mobile/presentation/bloc/login/login_cubit.dart';
@@ -97,7 +98,9 @@ class MyApp extends StatelessWidget {
           }, //add task
           AppRouting.detailTask: (context) {
             int id = ModalRoute.of(context)!.settings.arguments as int;
-            return DetailTaskPage(id: id);
+            return BlocProvider(
+              create: (context) => DetailTaskCubit(), 
+              child: DetailTaskPage(id: id));
           }, //detail task
           AppRouting.listTask: (context) {
             Map data = ModalRoute.of(context)!.settings.arguments as Map;

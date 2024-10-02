@@ -92,7 +92,7 @@ class TaskSource {
       final response = await http.patch(
         Uri.parse('$_baseURL/$id/fix'),
         body: {
-          "revision":revision,
+          "revision":'$revision',
         }
       );
       DMethod.logResponse(response);
